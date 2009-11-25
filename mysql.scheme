@@ -1,0 +1,19 @@
+create table client(
+	id int NOT NULL auto_increment,
+	name VARCHAR(50),
+	age int,
+	obs VARCHAR(100),
+	PRIMARY KEY (id)
+) ENGINE=INNODB;
+
+create table event(
+	id int NOT NULL auto_increment,
+	id_client int NOT NULL,
+	latitude double,
+	longitude double,
+	description int,
+	timestamp datetime,
+	status int,
+	PRIMARY KEY (id),
+	FOREIGN KEY (id_client) REFERENCES client(id)
+) ENGINE=INNODB;
