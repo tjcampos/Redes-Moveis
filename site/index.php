@@ -20,6 +20,17 @@ function atualiza() {
 	     );
 }
 
+function info(id) {
+	var div = $("#t2");
+	$.get(
+			"info.php",
+			{ id:id },
+			function (data,textStatus) {
+			div.html(data);
+			}
+	     );
+}
+
 $(document).ready(function(){
 		atualiza();
 		var at = setInterval(atualiza,3000);
@@ -30,12 +41,11 @@ $(document).ready(function(){
 </head>
 <body>
 	<div id="t0">
-		Texto 0
+		Mapa
 	</div>
 	<div id="t1">
 	</div>
 	<div id="t2">
-		Texto 2
 	</div>
 </body>
 </html>

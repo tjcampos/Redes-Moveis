@@ -21,7 +21,7 @@ $result = mysql_query($query,$conn) or die ("Falha ao consultar o banco");
 while ($line = mysql_fetch_array($result)) {
 	?>
 		<tr>
-		<td><a href=info.php?id=<? echo $line['id'] ?>><? echo $line['name']; ?></a></td>
+		<td><a href="#" onClick="info(<? echo $line['id']; ?>)"><? echo $line['name']; ?></a></td>
 		<td><? echo $line['info']; ?></td>
 		<td><? echo $line['timestamp']; ?></td>
 		</tr>
