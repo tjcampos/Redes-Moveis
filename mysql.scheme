@@ -6,14 +6,22 @@ create table client(
 	PRIMARY KEY (id)
 ) ENGINE=INNODB;
 
+create table description(
+	id int NOT NULL,
+	text VARCHAR(20) NOT NULL,
+	PRIMARY KEY(id)
+) ENGINE=INNODB;
+
 create table event(
 	id int NOT NULL auto_increment,
 	id_client int NOT NULL,
+	description int,
 	latitude double,
 	longitude double,
-	description int,
 	timestamp datetime,
 	status int,
 	PRIMARY KEY (id),
-	FOREIGN KEY (id_client) REFERENCES client(id)
+	FOREIGN KEY (id_client) REFERENCES client(id),
+	FOREIGN KEY (description) REFERENCES description(id)
 ) ENGINE=INNODB;
+

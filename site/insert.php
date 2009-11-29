@@ -14,7 +14,7 @@ if ($description == "") $description = "NULL";
 $conn = mysql_pconnect($ip,$user,$pass) or die("Erro ao conectar ao servidor SQL.");
 mysql_select_db($database,$conn) or die("Erro ao selecionar o banco");
 
-$query = "INSERT INTO event VALUES(0,$id_client,$latitude,$longitude,$description,NOW(),0)";
+$query = "INSERT INTO event VALUES(0,$id_client,$description,$latitude,$longitude,NOW(),0)";
 
 mysql_query($query,$conn) or die("Erro ao adicionar problema ao banco de dados.");
 
