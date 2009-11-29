@@ -1,6 +1,6 @@
 <?
 require("config.php");
-$id = $_GET['id'];
+$id = $_POST['id'];
 $conn = mysql_pconnect($ip,$user,$pass) or die("Falha ao conectar ao banco de dados.");
 mysql_select_db($database,$conn) or die("Falha ao selecionar o banco de dados");
 
@@ -19,7 +19,8 @@ while ($line = mysql_fetch_array($result)) {
 		Motivo:&nbsp;<? echo $line['info']; ?></br>
 		Latitude:&nbsp;<? echo $line['latitude']; ?></br>
 		Longitude:&nbsp;<? echo $line['longitude']; ?></br>
-		Data:&nbsp;<? echo $line['timestamp']; ?>
+		Data:&nbsp;<? echo $line['timestamp']; ?></br>
+		<a href="#" onClick="processado(<? echo $id ?>)">Processado</a>
 	<?
 }
 ?>

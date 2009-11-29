@@ -20,9 +20,20 @@ function atualiza() {
 	     );
 }
 
+function processado(id) {
+	var div = $("#t2");
+	$.post(
+			"process.php",
+			{ id:id },
+			function (data,textStatus) {
+			div.html(data);
+			}
+	     );
+}
+
 function info(id) {
 	var div = $("#t2");
-	$.get(
+	$.post(
 			"info.php",
 			{ id:id },
 			function (data,textStatus) {
