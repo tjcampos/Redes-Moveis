@@ -1,6 +1,6 @@
-insert into client values (0, 'Joao', 70, 'Cardiaco');
-insert into client values (0, 'Jose', 80, NULL);
-insert into client values (0, 'Maria', 90, 'Mora sozinha');
+/*insert into client values (0, 'Joao', 70, 'Cardiaco');*/
+insert into client values (1, 'Jose', 80, NULL);
+insert into client values (2, 'Maria', 90, 'Mora sozinha');
 
 insert into description values (1,'Queda');
 insert into description values (2,'Problema de Saude');
