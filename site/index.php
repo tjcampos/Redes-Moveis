@@ -16,19 +16,30 @@ mysql_select_db($database,$conn) or die("Falha ao selecionar o banco de dados");
    	type="text/javascript"></script>
    	
  	<script type="text/javascript">
+ 	var map;
  	function initialize() {
    	if (GBrowserIsCompatible()) {
-        var map = new GMap2(document.getElementById("map_canvas"));
+        map = new GMap2(document.getElementById("map_canvas"));
         map.setCenter(new GLatLng(37.4419, -122.1419), 13);
         map.setUIToDefault();
       }
    }
    function initialize2(lat,long) {
      if (GBrowserIsCompatible()) {
-       var map = new GMap2(document.getElementById("map_canvas"));
+        
        map.setCenter(new GLatLng(lat, long), 13);
        map.openInfoWindow(map.getCenter(),
                    document.createTextNode("São Carlos!"));
+       map.setUIToDefault();
+     }
+   }
+   
+   function showEmergencyLocation(name,age,obs,desc,lat,long,time)	{
+		if (GBrowserIsCompatible()) {
+        
+       map.setCenter(new GLatLng(lat, long), 13);
+       map.openInfoWindow(map.getCenter(),
+       	document.createTextNode(name.concat(" ",age," ",obs," ",desc," ",time)));
        map.setUIToDefault();
      }
    }
@@ -79,9 +90,13 @@ mysql_select_db($database,$conn) or die("Falha ao selecionar o banco de dados");
 <body onLoad="initialize()">
 	<div id="map_canvas" >Mapa</div>
 	<div id="t1">
-		<input type="button" onClick="initialize2(-22.017778, -47.890833)" value="Sanca!" />
 	</div>
 	<div id="t2">
+		<input type="button" onClick="initialize2(-22.017778, -47.890833)" value="Sanca!"
+			style="font-size: 20px; position:center; width:100%" />
+		<input type="button" onClick="showEmergencyLocation('Fulano','70','cardiaco',
+			'assalto',-22.007778, -47.880833,'18:35')" 
+				value="Emergência!" style="font-size: 50px; position:center; width:100%" />
 	</div>
 </body>
 </html>
