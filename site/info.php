@@ -19,6 +19,7 @@ $line = mysql_fetch_array($result)
 	Motivo:&nbsp;<? echo $info = $line['info']; ?><br>
 	Latitude:&nbsp;<? echo $latitude = $line['latitude']; ?><br>
 	Longitude:&nbsp;<? echo $longitude = $line['longitude']; ?><br>
+	Erro:&nbsp;<? echo $erro = $line['erro']; ?><br>
 	Data:&nbsp;<? echo $timestamp = $line['timestamp']; ?><br>
 	<a href="#" onClick="processado(<? echo $id ?>)">Processado</a>
 <?

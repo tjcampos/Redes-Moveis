@@ -18,6 +18,7 @@ create table event(
 	description int,
 	latitude double,
 	longitude double,
+	erro double,
 	timestamp datetime,
 	status int,
 	PRIMARY KEY (id),
