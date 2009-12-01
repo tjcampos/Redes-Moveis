@@ -34,15 +34,52 @@ mysql_select_db($database,$conn) or die("Falha ao selecionar o banco de dados");
      }
    }
    
+   var highlightCircle;
+ 
    function showEmergencyLocation(name,age,obs,desc,lat,long,time)	{
+   
+		
 		if (GBrowserIsCompatible()) {
         
-       map.setCenter(new GLatLng(lat, long), 13);
-       map.openInfoWindow(map.getCenter(),
-       	document.createTextNode(name.concat(" ",age," ",obs," ",desc," ",time)));
-       map.setUIToDefault();
-     }
-   }
+       	map.setCenter(new GLatLng(lat, long), 13);
+       	map.openInfoWindow(map.getCenter(),
+       		document.createTextNode(name.concat(" ",age," ",obs," ",desc," ",time)));
+       	map.setUIToDefault();
+       
+       	var markerPoint = new GLatLng(lat, long);
+
+      	var polyPoints = Array();
+
+      	if (highlightCircle) {
+        		map.removeOverlay(highlightCircle);
+      	}   
+       
+      	var mapNormalProj = G_NORMAL_MAP.getProjection();
+      	var mapZoom = map.getZoom();
+      	var clickedPixel = mapNormalProj.fromLatLngToPixel(markerPoint, mapZoom);
+
+	      var polySmallRadius = 20;
+	
+	      var polyNumSides = 20;
+	      var polySideLength = 18;
+	
+	      for (var a = 0; a<(polyNumSides+1); a++) {
+		   	var aRad = polySideLength*a*(Math.PI/180);
+		    	var polyRadius = polySmallRadius; 
+	      	var pixelX = clickedPixel.x + polyRadius * Math.cos(aRad);
+		    	var pixelY = clickedPixel.y + polyRadius * Math.sin(aRad);
+		    	var polyPixel = new GPoint(pixelX,pixelY);
+		    	var polyPoint = mapNormalProj.fromPixelToLatLng(polyPixel,mapZoom);
+		    	
+		    	polyPoints.push(polyPoint);
+	      }
+	      
+	      // Using GPolygon(points,  strokeColor?,  strokeWeight?,  strokeOpacity?,  fillColor?,  fillOpacity?)
+	      highlightCircle = new GPolygon(polyPoints,"#000000",2,0.0,"#FF0000",.5);
+	      map.addOverlay(highlightCircle);
+	       	
+		}
+	}
    </script>
 	
 
@@ -92,11 +129,14 @@ mysql_select_db($database,$conn) or die("Falha ao selecionar o banco de dados");
 	<div id="t1">
 	</div>
 	<div id="t2">
-		<input type="button" onClick="initialize2(-22.017778, -47.890833)" value="Sanca!"
+		<input type="button" onClick="initialize2(-22.017778, -47.890833)" value="Sanca"
 			style="font-size: 20px; position:center; width:100%" />
 		<input type="button" onClick="showEmergencyLocation('Fulano','70','cardiaco',
 			'assalto',-22.007778, -47.880833,'18:35')" 
-				value="Emergência!" style="font-size: 50px; position:center; width:100%" />
+				value="Emergência 1!" style="font-size: 50px; position:center; width:100%" />
+		<input type="button" onClick="showEmergencyLocation('Fulana','70','cardiaca',
+			'assalto',-22.027778, -47.900833,'18:35')" 
+			value="Emergência 2!" style="font-size: 50px; position:center; width:100%" />
 	</div>
 </body>
 </html>
