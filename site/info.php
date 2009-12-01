@@ -10,17 +10,23 @@ $query = "SELECT name, age, obs, text AS info, latitude, longitude, timestamp, s
 	WHERE event.id=$id";
 $result = mysql_query($query,$conn) or die ("Falha ao consultar o banco");
 
-while ($line = mysql_fetch_array($result)) {
-	?>
-		
-		Nome:&nbsp;<? echo $line['name']; ?></br>
-		Idade:&nbsp;<? echo $line['age']; ?></br>
-		Observa&ccedil;&atilde;o:&nbsp;<? echo $line['obs']; ?></br>
-		Motivo:&nbsp;<? echo $line['info']; ?></br>
-		Latitude:&nbsp;<? echo $line['latitude']; ?></br>
-		Longitude:&nbsp;<? echo $line['longitude']; ?></br>
-		Data:&nbsp;<? echo $line['timestamp']; ?></br>
-		<a href="#" onClick="processado(<? echo $id ?>)">Processado</a>
-	<?
+$line = mysql_fetch_array($result)
+?>
+	
+	Nome:&nbsp;<? echo $name = $line['name']; ?><br>
+	Idade:&nbsp;<? echo $age = $line['age']; ?><br>
+	Observa&ccedil;&atilde;o:&nbsp;<? echo $obs = $line['obs']; ?><br>
+	Motivo:&nbsp;<? echo $info = $line['info']; ?><br>
+	Latitude:&nbsp;<? echo $latitude = $line['latitude']; ?><br>
+	Longitude:&nbsp;<? echo $longitude = $line['longitude']; ?><br>
+	Data:&nbsp;<? echo $timestamp = $line['timestamp']; ?><br>
+	<a href="#" onClick="processado(<? echo $id ?>)">Processado</a>
+<?
+if ($latitude != "" and $longitude != ""){
+	echo "<SCRIPT LANGUAGE='javascript'>showEmergencyLocation('$name','','','',$latitude, $longitude,'$timestamp');</SCRIPT>";
+}
+else {
+	echo "<SCRIPT LANGUAGE='javascript'>initialize2(-22.017778, -47.890833)</SCRIPT>";
 }
 ?>
+
