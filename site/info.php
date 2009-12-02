@@ -24,7 +24,7 @@ $line = mysql_fetch_array($result)
 	<a href="#" onClick="processado(<? echo $id ?>)">Processado</a>
 <?
 if ($latitude != "" and $longitude != ""){
-	echo "<SCRIPT LANGUAGE='javascript'>showEmergencyLocation('$name','','','',$latitude, $longitude,'$timestamp');</SCRIPT>";
+	echo "<SCRIPT LANGUAGE='javascript'>showEmergencyLocation('$name','','','',$latitude, $longitude,'$timestamp',$erro);</SCRIPT>";
 }
 else {
 	echo "<SCRIPT LANGUAGE='javascript'>initialize2(-22.017778, -47.890833)</SCRIPT>";
