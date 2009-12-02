@@ -36,7 +36,7 @@ mysql_select_db($database,$conn) or die("Falha ao selecionar o banco de dados");
 
 	var highlightCircle;
 
-	function showEmergencyLocation(name,age,obs,desc,lat,long,time)	{
+	function showEmergencyLocation(name,age,obs,desc,lat,long,time,erro)	{
 
 
 		if (GBrowserIsCompatible()) {
@@ -58,7 +58,7 @@ mysql_select_db($database,$conn) or die("Falha ao selecionar o banco de dados");
 			var mapZoom = map.getZoom();
 			var clickedPixel = mapNormalProj.fromLatLngToPixel(markerPoint, mapZoom);
 
-			var polySmallRadius = 10;
+			var polySmallRadius = erro;
 
 			var polyNumSides = 20;
 			var polySideLength = 18;
