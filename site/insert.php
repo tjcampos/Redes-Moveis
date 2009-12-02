@@ -3,7 +3,7 @@ require("config.php");
 $id_client = $_GET['id'];
 $latitude = $_GET['latitude'];
 $longitude = $_GET['longitude'];
-$longitude = $_GET['erro'];
+$erro = $_GET['erro'];
 $description = $_GET['description'];
 
 if ($id_client == "") die("O id deve ser informado!");
