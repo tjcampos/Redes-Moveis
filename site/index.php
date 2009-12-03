@@ -58,7 +58,7 @@ mysql_select_db($database,$conn) or die("Falha ao selecionar o banco de dados");
 			var mapZoom = map.getZoom();
 			var clickedPixel = mapNormalProj.fromLatLngToPixel(markerPoint, mapZoom);
 
-			var polySmallRadius = erro;
+			var polySmallRadius = erro/10;
 
 			var polyNumSides = 20;
 			var polySideLength = 18;
